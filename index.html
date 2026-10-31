@@ -37,6 +37,9 @@
                display: flex; gap: 14px; align-items: flex-start; }
   .points b { font-weight: 800; display: block; }
   .points span { color: var(--muted); font-size: 15px; }
+  .points a { color: inherit; text-decoration: none; display: flex; gap: 14px; align-items: flex-start; }
+  .points .more { color: var(--blue); font-weight: 800; }
+  .points li.link:hover { border-color: var(--blue); }
   .dot { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--blue); color: #fff;
          display: grid; place-items: center; font-weight: 900; font-size: 15px; margin-top: 2px; }
   .beta { margin-top: 40px; background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 28px 22px; }
@@ -87,6 +90,7 @@
   <ul class="points">
     <li><div class="dot">7</div><div><b>Seven forecasts in one</b><span>Six of the world's major weather models plus the National Weather Service, averaged into one number.</span></div></li>
     <li><div class="dot">±</div><div><b>See when they disagree</b><span>When the forecasts split, MeanCast tells you, so you know how much to trust tomorrow.</span></div></li>
+    <li class="link"><a href="/accuracy/"><div class="dot">✓</div><div><b>Checked against real weather stations</b><span>Over up to two years of forecasts, MeanCast was closer than the National Weather Service at 31 of 39 U.S. places. <span class="more">See the numbers →</span></span></div></a></li>
     <li><div class="dot">0</div><div><b>No ads. No tracking.</b><span>Your location is only used to get your forecast. Nothing to sell.</span></div></li>
   </ul>
 
