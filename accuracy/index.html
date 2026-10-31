@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Accuracy — MeanCast</title>
-<meta name="description" content="How close MeanCast's forecasts have been in New York over the last 30 days, scored daily against the official Central Park weather station.">
+<meta name="description" content="How close MeanCast's forecasts have been, tested against official weather station readings at 39 U.S. places over up to two years.">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#3a82e6">
@@ -90,19 +90,32 @@
   </a>
 
   <h1>How accurate is MeanCast?</h1>
-  <p class="lede">Every morning we log the forecast for Central Park in New York, then score it against what the official weather station recorded. This page updates on its own, good days and bad.</p>
+  <p class="lede">We check MeanCast's forecasts against what the official weather stations actually recorded. Here's every result, good and bad.</p>
   <p class="effective" id="updated"></p>
+
+  <div class="card"><section class="stat">
+    <div class="big"><span id="ltWin">31</span> <small>of <span id="ltPlaces">39</span> places</small></div>
+    <p><b>MeanCast was closer than the National Weather Service</b> over up to two years of past forecasts, 1 to 5 days ahead.</p>
+    <p>It also beat every one of the six weather models it averages at <b><span id="ltModels">36</span> of <span class="ltPlaces">39</span></b> places.</p>
+  </section></div>
 
   <div class="card">
     <section>
-      <h2>Last 30 days, average miss</h2>
-      <p class="note" id="liveRange"></p>
-      <ul class="bars" id="liveBars"></ul>
-      <p class="note">Average miss is how far the forecast high and low were from what happened, in °F. Shorter is better. The small number is how often the high or low was off by 4°F or more. Everyone is scored on the same days.</p>
+      <h2>Average miss, all <span class="ltPlaces">39</span> places</h2>
+      <p class="note">How far the forecast high and low were from what happened, in °F. Shorter is better.</p>
+      <ul class="bars" id="ltBars"></ul>
+      <details>
+        <summary>See every place</summary>
+        <table>
+          <thead><tr><th>Place</th><th>MeanCast</th><th>NWS</th></tr></thead>
+          <tbody id="ltTable"></tbody>
+        </table>
+      </details>
     </section>
     <section>
-      <h2>Who's on the board</h2>
-      <p><b>MeanCast</b> is the number the app shows: six weather models plus the National Weather Service, averaged and fine-tuned with nearby weather stations. The six models are listed on their own so you can see how the average compares with each one.</p>
+      <h2>How we tested</h2>
+      <p>Open-Meteo keeps an archive of what each weather model predicted. We rebuilt MeanCast's forecast for every day from that archive, the same way the app does it, and compared it with the National Weather Service's forecast from the same morning. Then we scored both against each place's official weather station.</p>
+      <p>The places are 11 we picked (big cities and small towns in very different climates) and 28 airports drawn at random, one per state. MeanCast fine-tunes each model using nearby weather stations, so to keep the test honest we hid each place's own station and made it learn from a different one nearby.</p>
     </section>
   </div>
 
@@ -123,16 +136,22 @@
       <span class="track"><span class="fill" style="width:${(100 * i.value / max).toFixed(1)}%;display:block"></span></span></li>`).join("");
   }
   fetch("accuracy.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
-    const lv = d.live;
+    const lt = d.longterm;
     document.getElementById("updated").textContent = "Updated " + fmtDate(d.updated);
-    document.getElementById("liveRange").textContent =
-      `${lv.place}, ${fmtDate(lv.first)} to ${fmtDate(lv.last)}, forecasts made 1 to 5 days ahead (${lv.forecasts} each).`;
-    bars(document.getElementById("liveBars"), lv.board.map(b => ({
-      name: b.name,
-      value: b.avg_miss, sub: b.big_miss_pct, me: b.name === "MeanCast"
-    })));
+    document.getElementById("ltWin").textContent = lt.beats_nws;
+    document.getElementById("ltPlaces").textContent = lt.places;
+    document.querySelectorAll(".ltPlaces").forEach(e => e.textContent = lt.places);
+    document.getElementById("ltModels").textContent = lt.beats_all_models;
+    bars(document.getElementById("ltBars"), [
+      { name: "MeanCast", value: lt.meancast_avg, me: true },
+      { name: "National Weather Service", value: lt.nws_avg }
+    ]);
+    document.getElementById("ltTable").innerHTML = lt.list.map(p => {
+      const win = p.meancast < p.nws;
+      return `<tr><td>${esc(p.place)}</td><td class="${win ? "win" : ""}">${p.meancast.toFixed(2)}</td><td class="${p.nws < p.meancast ? "win" : ""}">${p.nws.toFixed(2)}</td></tr>`;
+    }).join("");
   }).catch(() => {
-    document.getElementById("liveRange").textContent = "Couldn't load the latest numbers. Try reloading.";
+    document.getElementById("ltBars").innerHTML = "<li>Couldn't load the numbers. Try reloading.</li>";
   });
 </script>
 </body>
