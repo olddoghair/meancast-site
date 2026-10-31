@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Accuracy — MeanCast</title>
+<meta name="description" content="How close MeanCast's forecasts have been, tested against official weather station readings at 39 U.S. places over up to two years.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#3a82e6">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%233a82e6'/%3E%3Cg transform='translate(12 11) scale(.76)' fill='%23fff'%3E%3Crect x='8' y='50' width='84' height='38' rx='19'/%3E%3Ccircle cx='30' cy='54' r='20'/%3E%3Ccircle cx='54' cy='41' r='27'/%3E%3Ccircle cx='76' cy='56' r='17'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f5f7; --card: #ffffff; --ink: #1d2433; --muted: #5d6677;
+    --blue: #3a82e6; --blue-deep: #265ebe; --line: #e3e6ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #1c1c1e; --card: #2c2c2e; --ink: #f2f3f5; --muted: #a3a9b5; --line: #3a3a3d; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: Nunito, ui-rounded, -apple-system, system-ui, sans-serif; font-weight: 600;
+    line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 40px 20px 40px; }
+  .home { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none;
+          font-weight: 900; font-size: 20px; }
+  .home svg { width: 40px; height: 40px; border-radius: 10px; }
+  h1 { font-size: 38px; font-weight: 900; letter-spacing: -.5px; margin: 28px 0 0; line-height: 1.15; }
+  .lede { font-size: 19px; color: var(--muted); margin: 8px 0 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 6px 20px; margin-top: 24px; }
+  .card section { padding: 14px 0; border-top: 1px solid var(--line); }
+  .card section:first-child { border-top: none; }
+  h2 { font-size: 19px; font-weight: 800; margin: 0 0 4px; }
+  p, li { color: var(--muted); font-size: 16px; }
+  p { margin: 6px 0 0; }
+  ul { margin: 6px 0 0; padding-left: 22px; }
+  li { margin: 3px 0; }
+  b, strong { color: var(--ink); font-weight: 800; }
+  a { color: var(--blue); }
+  .btn { display: inline-block; margin-top: 14px; background: var(--blue); color: #fff; text-decoration: none;
+         font-weight: 800; font-size: 17px; padding: 12px 26px; border-radius: 999px; }
+  .btn:hover { background: var(--blue-deep); }
+  .effective { font-size: 14px; color: var(--muted); margin-top: 6px; }
+  footer { margin-top: 40px; color: var(--muted); font-size: 14px; text-align: center; }
+  footer a { color: inherit; }
+  .stat { text-align: center; padding: 22px 20px 20px; }
+  .big { font-size: 54px; font-weight: 900; line-height: 1; color: var(--blue); letter-spacing: -1px; }
+  .big small { font-size: 22px; color: var(--muted); font-weight: 800; letter-spacing: 0; }
+  .stat p { margin-top: 10px; }
+  .bars { list-style: none; padding: 0; margin: 10px 0 4px; display: grid; gap: 9px; }
+  .bars li { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; align-items: baseline; font-size: 15px; }
+  .bars .track { grid-column: 1 / -1; }
+  .bars .name { color: var(--ink); }
+  .bars .track { height: 14px; background: var(--line); border-radius: 7px; overflow: hidden; }
+  .bars .fill { height: 100%; background: var(--muted); opacity: .55; border-radius: 7px; }
+  .bars .me .fill { background: var(--blue); opacity: 1; }
+  .bars .me .name { font-weight: 900; color: var(--blue); }
+  .bars .val { text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .bars .sub { font-size: 13px; color: var(--muted); margin-left: 8px; }
+  .note { font-size: 14px; }
+  details { margin-top: 10px; }
+  summary { cursor: pointer; color: var(--blue); font-weight: 800; }
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 6px 4px; border-top: 1px solid var(--line); color: var(--muted); }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--ink); font-weight: 800; border-top: none; }
+  td.win { color: var(--blue); font-weight: 800; }
+
+</style>
+</head>
+<body>
+<main>
+  <a class="home" href="/">
+    <svg viewBox="0 0 1024 1024" aria-hidden="true">
+      <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a90e2"/><stop offset="1" stop-color="#265ebe"/></linearGradient></defs>
+      <rect width="1024" height="1024" fill="url(#sky)"/>
+      <g transform="translate(122 114.2) scale(7.8)">
+        <g fill="#fff"><rect x="8" y="50" width="84" height="38" rx="19"/><circle cx="30" cy="54" r="20"/><circle cx="54" cy="41" r="27"/><circle cx="76" cy="56" r="17"/></g>
+        <g fill="#283448" stroke="#283448" stroke-linecap="round">
+          <circle cx="41" cy="61.5" r="4.5" stroke="none"/><circle cx="63" cy="61.5" r="4.5" stroke="none"/>
+          <line x1="34.75" y1="50.21" x2="47.25" y2="53.79" stroke-width="3.6"/><line x1="56.75" y1="53.79" x2="69.25" y2="50.21" stroke-width="3.6"/>
+          <path d="M44 80 Q52 72 60 80" fill="none" stroke-width="4.5"/>
+        </g>
+      </g>
+    </svg>
+    MeanCast
+  </a>
+
+  <h1>How accurate is MeanCast?</h1>
+  <p class="lede">We check MeanCast's forecasts against what the official weather stations actually recorded. Here's every result, good and bad.</p>
+  <p class="effective" id="updated"></p>
+
+  <div class="card"><section class="stat">
+    <div class="big"><span id="ltWin">31</span> <small>of <span id="ltPlaces">39</span> places</small></div>
+    <p><b>MeanCast was closer than the National Weather Service</b> over up to two years of past forecasts, 1 to 5 days ahead.</p>
+    <p>It also beat every one of the six weather models it averages at <b><span id="ltModels">36</span> of <span class="ltPlaces">39</span></b> places.</p>
+  </section></div>
+
+  <div class="card">
+    <section>
+      <h2>Average miss, all <span class="ltPlaces">39</span> places</h2>
+      <p class="note">How far the forecast high and low were from what happened, in °F. Shorter is better.</p>
+      <ul class="bars" id="ltBars"></ul>
+      <details>
+        <summary>See every place</summary>
+        <table>
+          <thead><tr><th>Place</th><th>MeanCast</th><th>NWS</th></tr></thead>
+          <tbody id="ltTable"></tbody>
+        </table>
+      </details>
+    </section>
+    <section>
+      <h2>How we tested</h2>
+      <p>Open-Meteo keeps an archive of what each weather model predicted. We rebuilt MeanCast's forecast for every day from that archive, the same way the app does it, and compared it with the National Weather Service's forecast from the same morning. Then we scored both against each place's official weather station.</p>
+      <p>The places are 11 we picked (big cities and small towns in very different climates) and 28 airports drawn at random, one per state. MeanCast fine-tunes each model using nearby weather stations, so to keep the test honest we hid each place's own station and made it learn from a different one nearby.</p>
+    </section>
+  </div>
+
+  <footer>
+    <a href="/">Home</a> · <a href="/accuracy/">Accuracy</a> · <a href="/support/">Support</a> · <a href="/privacy/">Privacy</a><br>
+    © 2026 MeanCast
+  </footer>
+</main>
+
+<script>
+  const fmtDate = s => new Date(s + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  function bars(el, items) {
+    const max = Math.max(...items.map(i => i.value));
+    el.innerHTML = items.map(i => `<li class="${i.me ? "me" : ""}">
+      <span class="name">${esc(i.name)}</span>
+      <span class="val">${i.value.toFixed(2)}°F${i.sub != null ? `<span class="sub">${i.sub}% off by 4°+</span>` : ""}</span>
+      <span class="track"><span class="fill" style="width:${(100 * i.value / max).toFixed(1)}%;display:block"></span></span></li>`).join("");
+  }
+  fetch("accuracy.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
+    const lt = d.longterm;
+    document.getElementById("updated").textContent = "Updated " + fmtDate(d.updated);
+    document.getElementById("ltWin").textContent = lt.beats_nws;
+    document.getElementById("ltPlaces").textContent = lt.places;
+    document.querySelectorAll(".ltPlaces").forEach(e => e.textContent = lt.places);
+    document.getElementById("ltModels").textContent = lt.beats_all_models;
+    bars(document.getElementById("ltBars"), [
+      { name: "MeanCast", value: lt.meancast_avg, me: true },
+      { name: "National Weather Service", value: lt.nws_avg }
+    ]);
+    document.getElementById("ltTable").innerHTML = lt.list.map(p => {
+      const win = p.meancast < p.nws;
+      return `<tr><td>${esc(p.place)}</td><td class="${win ? "win" : ""}">${p.meancast.toFixed(2)}</td><td class="${p.nws < p.meancast ? "win" : ""}">${p.nws.toFixed(2)}</td></tr>`;
+    }).join("");
+  }).catch(() => {
+    document.getElementById("ltBars").innerHTML = "<li>Couldn't load the numbers. Try reloading.</li>";
+  });
+</script>
+</body>
+</html>
