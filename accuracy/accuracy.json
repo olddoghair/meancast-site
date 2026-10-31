@@ -1,0 +1,372 @@
+{
+ "updated": "2026-10-31",
+ "longterm": {
+  "places": 39,
+  "beats_nws": 31,
+  "beats_all_models": 36,
+  "meancast_avg": 3.31,
+  "nws_avg": 3.47,
+  "list": [
+   {
+    "place": "Kearney, Nebraska",
+    "group": "random",
+    "meancast": 3.84,
+    "nws": 4.39,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Grand Forks, North Dakota",
+    "group": "random",
+    "meancast": 3.62,
+    "nws": 4.16,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Concordia, Kansas",
+    "group": "random",
+    "meancast": 3.67,
+    "nws": 4.2,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Lafayette, Indiana",
+    "group": "random",
+    "meancast": 3.25,
+    "nws": 3.77,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Bismarck, ND (northern plains)",
+    "group": "picked",
+    "meancast": 3.59,
+    "nws": 4.1,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Marion, Ohio",
+    "group": "random",
+    "meancast": 2.97,
+    "nws": 3.42,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Martinsburg, West Virginia",
+    "group": "random",
+    "meancast": 3.28,
+    "nws": 3.67,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Danbury, Connecticut",
+    "group": "random",
+    "meancast": 3.56,
+    "nws": 3.94,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Washington, District of Columbia",
+    "group": "random",
+    "meancast": 3.22,
+    "nws": 3.58,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Chicago (O'Hare)",
+    "group": "picked",
+    "meancast": 2.81,
+    "nws": 3.16,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Spearfish, South Dakota",
+    "group": "random",
+    "meancast": 5.52,
+    "nws": 5.86,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Lexington, Kentucky",
+    "group": "random",
+    "meancast": 3.08,
+    "nws": 3.42,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Block Island, Rhode Island",
+    "group": "random",
+    "meancast": 2.67,
+    "nws": 3.0,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Morrisville, Vermont",
+    "group": "random",
+    "meancast": 3.85,
+    "nws": 4.18,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Windom, Minnesota",
+    "group": "random",
+    "meancast": 4.96,
+    "nws": 5.27,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Hugo, Oklahoma",
+    "group": "random",
+    "meancast": 4.71,
+    "nws": 5.02,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Bandon, Oregon",
+    "group": "random",
+    "meancast": 2.73,
+    "nws": 3.02,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Coeur D'Alene, Idaho",
+    "group": "random",
+    "meancast": 2.77,
+    "nws": 3.04,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Clarksville, Tennessee",
+    "group": "random",
+    "meancast": 3.13,
+    "nws": 3.38,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Georgetown, Delaware",
+    "group": "random",
+    "meancast": 3.19,
+    "nws": 3.43,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Petersburg, Virginia",
+    "group": "random",
+    "meancast": 4.08,
+    "nws": 4.3,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "New York (Central Park)",
+    "group": "picked",
+    "meancast": 2.71,
+    "nws": 2.9,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Denver (airport)",
+    "group": "picked",
+    "meancast": 3.43,
+    "nws": 3.61,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Dothan, Alabama",
+    "group": "random",
+    "meancast": 2.54,
+    "nws": 2.7,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Jackson, Wyoming",
+    "group": "random",
+    "meancast": 4.21,
+    "nws": 4.37,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Philadelphia, Pennsylvania",
+    "group": "random",
+    "meancast": 3.08,
+    "nws": 3.22,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Seattle (Sea-Tac)",
+    "group": "picked",
+    "meancast": 2.04,
+    "nws": 2.12,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Flagstaff, AZ (mountains)",
+    "group": "picked",
+    "meancast": 2.75,
+    "nws": 2.82,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Charlotte, North Carolina",
+    "group": "random",
+    "meancast": 2.83,
+    "nws": 2.9,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Morristown, New Jersey",
+    "group": "random",
+    "meancast": 4.55,
+    "nws": 4.58,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "La Verne, California",
+    "group": "random",
+    "meancast": 3.04,
+    "nws": 3.07,
+    "models_beaten": 4,
+    "models": 6
+   },
+   {
+    "place": "Miami (airport)",
+    "group": "picked",
+    "meancast": 1.72,
+    "nws": 1.72,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Meridian, MS (humid South)",
+    "group": "picked",
+    "meancast": 2.79,
+    "nws": 2.77,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Elko, NV (high desert)",
+    "group": "picked",
+    "meancast": 3.31,
+    "nws": 3.28,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Reno, Nevada",
+    "group": "random",
+    "meancast": 2.99,
+    "nws": 2.79,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Orangeburg, South Carolina",
+    "group": "random",
+    "meancast": 3.07,
+    "nws": 2.86,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Ogden, Utah",
+    "group": "random",
+    "meancast": 2.92,
+    "nws": 2.66,
+    "models_beaten": 6,
+    "models": 6
+   },
+   {
+    "place": "Arcata, CA (foggy coast)",
+    "group": "picked",
+    "meancast": 3.72,
+    "nws": 2.78,
+    "models_beaten": 5,
+    "models": 6
+   },
+   {
+    "place": "Phoenix (Sky Harbor)",
+    "group": "picked",
+    "meancast": 2.95,
+    "nws": 1.95,
+    "models_beaten": 5,
+    "models": 6
+   }
+  ]
+ },
+ "live": {
+  "place": "Central Park, New York",
+  "first": "2026-10-18",
+  "last": "2026-10-29",
+  "forecasts": 50,
+  "board": [
+   {
+    "name": "German (ICON)",
+    "avg_miss": 1.62,
+    "big_miss_pct": 14
+   },
+   {
+    "name": "National Weather Service",
+    "avg_miss": 1.75,
+    "big_miss_pct": 24
+   },
+   {
+    "name": "MeanCast",
+    "avg_miss": 2.13,
+    "big_miss_pct": 18
+   },
+   {
+    "name": "UK Met Office",
+    "avg_miss": 2.33,
+    "big_miss_pct": 28
+   },
+   {
+    "name": "American (GFS)",
+    "avg_miss": 2.73,
+    "big_miss_pct": 46
+   },
+   {
+    "name": "Japanese (JMA)",
+    "avg_miss": 3.16,
+    "big_miss_pct": 60
+   },
+   {
+    "name": "European (ECMWF)",
+    "avg_miss": 3.28,
+    "big_miss_pct": 56
+   },
+   {
+    "name": "Canadian (GEM)",
+    "avg_miss": 3.77,
+    "big_miss_pct": 68
+   }
+  ]
+ }
+}
