@@ -69,7 +69,7 @@
 
   <h1>Privacy Policy</h1>
   <p class="lede">The short version: MeanCast doesn't collect, store or sell any information about you.</p>
-  <p class="effective">Effective October 13, 2026</p>
+  <p class="effective">Effective October 18, 2026</p>
 
   <div class="card">
     <section>
@@ -81,10 +81,11 @@
       <h2>Weather services</h2>
       <p>To get forecasts, the app sends a place's coordinates to:</p>
       <ul>
-        <li><b>Open-Meteo</b> (<a href="https://open-meteo.com/">open-meteo.com</a>), for global weather model forecasts</li>
+        <li><b>The MeanCast forecast server</b>, which we run on Cloudflare. It rounds the coordinates to a square about 1.4 miles across and gets the model forecasts for that square from Open-Meteo, and, in the U.S., recent readings from the nearest NOAA weather station to fine-tune them. It saves the forecast for that square for up to an hour so nearby people can share it. It doesn't keep a record of who asked or exactly where.</li>
+        <li><b>Open-Meteo</b> (<a href="https://open-meteo.com/">open-meteo.com</a>), for global weather model forecasts, only if the MeanCast server can't be reached</li>
         <li><b>The U.S. National Weather Service</b> (<a href="https://www.weather.gov/">weather.gov</a>), for its forecast and current conditions, in the U.S. only</li>
       </ul>
-      <p>These services receive the request the way any website receives a visit, and their own privacy policies apply to it.</p>
+      <p>These services receive the request the way any website receives a visit, and their own privacy policies apply to it. Cloudflare's policy is at <a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a>.</p>
     </section>
     <section>
       <h2>Alerts</h2>
